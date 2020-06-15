@@ -2,7 +2,7 @@ name: Custom Templates
 slug: custom-templates
 type: plugin
 version: 0.1.0
-description: Keep custom templates save from theme and plugin updates
+description: Keep custom templates safe from theme and plugin updates
 icon: shield
 author:
   name: Ron Wardenier
