@@ -1,7 +1,7 @@
 name: Custom Templates
 slug: custom-templates
 type: plugin
-version: 0.1.0
+version: 0.1.1
 description: Keep custom templates safe from theme and plugin updates
 icon: shield
 author:
