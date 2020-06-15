@@ -6,7 +6,7 @@ Any Twig template file stored in the `custom-templates` directory can then be us
 
 This may be useful for modifications to theme templates without having to create a child theme. Another use case is when a plugin allows for custom templates. These are often stored in the plugin folder where they may cause problems when the plugin is updated.
 
-By storing templates in the `user/data` directory the templates are save from theme and plugin updates.
+By storing templates in the `user/data` directory the templates are safe from theme and plugin updates.
 
 ## Installation
 
