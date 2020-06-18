@@ -1,6 +1,6 @@
 # Custom Templates Plugin
 
-The **Custom Templates** Plugin is an extension for [Grav CMS](http://github.com/getgrav/grav). The only thing this plugin does is that it adds the `/your/site/grav/user/data/custom-templates` directory to Twig lookup paths.
+The **Custom Templates** Plugin is an extension for [Grav CMS](http://github.com/getgrav/grav). The only thing this plugin does is that it adds the `/your/site/grav/user/data/custom-templates` directory to Twig lookup paths. To ensure the templates stored in this directory are used first a priority can be set.
 
 Any Twig template file stored in the `custom-templates` directory can then be used by Twig.
 
@@ -27,7 +27,7 @@ To install the plugin manually, download the zip-version of this repository and 
 You should now have all the plugin files under
 
     /your/site/grav/user/plugins/custom-templates
-	
+
 > NOTE: This plugin is a modular component for Grav which may require other plugins to operate, please see its [blueprints.yaml-file on GitHub](https://github.com/bleutzinn/grav-plugin-custom-templates/blob/master/blueprints.yaml).
 
 ### Admin Plugin
@@ -42,6 +42,17 @@ Here is the default configuration and an explanation of available options:
 
 ```yaml
 enabled: true
+priority: 100
 ```
 
-Note that if you use the Admin Plugin, a file with your configuration named custom-templates.yaml will be saved in the `user/config/plugins/`-folder once the configuration is saved in the Admin.
+Note that if you use the Admin Plugin, a file with your configuration named `custom-templates.yaml` will be saved in the `user/config/plugins/`-folder once the configuration is saved in the Admin.
+
+### Configuration Options
+
+`enabled` is a switch to turn the plugin On (`true`) or Off (`false`).
+
+`priority` can be a positive number or `top`. The priority determines the order of the `/your/site/grav/user/data/custom-templates` path in the list of Twig template paths. To ensure this path is used even before the active theme templates path use `priority: top`.
+
+## Credits
+
+This plugin is based upon the description of a [Custom Twig templates plugin](https://learn.getgrav.org/16/cookbook/plugin-recipes#custom-twig-templates-plugin) in the "[Cookbook - Plugin Recipes](https://learn.getgrav.org/16/cookbook/plugin-recipes)". Thanks go to the author(s).

@@ -45,8 +45,15 @@ class CustomTemplatesPlugin extends Plugin
             return;
         }
 
+        $default = 100;
+        $priority = $this->config->get('plugins.custom-templates.priority', $default);
+
+        if (!is_numeric($priority)) {
+            $priority = $default;
+        }
+
         $this->enable([
-		'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0]
+		    'onTwigTemplatePaths' => ['onTwigTemplatePaths', abs($priority)]
         ]);
 
     }
@@ -57,14 +64,26 @@ class CustomTemplatesPlugin extends Plugin
      */
     public function onTwigTemplatePaths()
     {
+                
+        $user_path = $this->grav['locator']->findResource('user://');
+        $templates_dir = '/data/templates';
+        $templates_path = $user_path . $templates_dir;
+
         // If the location for custom templates does not exist create it
-        $user_dir = $this->grav['locator']->findResource('user://');
-        if (!file_exists($user_dir . '/data/templates')) {
-            mkdir($user_dir . '/data/templates', 0775, true);
+        if (!file_exists($templates_path)) {
+            mkdir($templates_path, 0775, true);
         }
 
+        // Get the priority
+        $priority = $this->config->get('plugins.custom-templates.priority', 100);
+
         // Add local templates folder to the Twig templates search path
-        $this->grav['twig']->twig_paths[] = $this->grav['locator']->findResource('user://') . '/data/templates';
+        if (!is_numeric($priority) && strtolower($priority) == 'top') {
+            array_unshift($this->grav['twig']->twig_paths, $templates_path);
+        }
+        else {
+            $this->grav['twig']->twig_paths[] = $templates_path;
+        }
 
     }
 
