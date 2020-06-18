@@ -1,7 +1,7 @@
 name: Custom Templates
 slug: custom-templates
 type: plugin
-version: 0.1.1
+version: 0.2.0
 description: Keep custom templates safe from theme and plugin updates
 icon: shield
 author:
@@ -29,3 +29,12 @@ form:
         0: PLUGIN_ADMIN.DISABLED
       validate:
         type: bool
+    priority:
+      type: text
+      default: 100
+      label: Priority (a number or 'top')
+      help: 'The priority determines the order in the list of Twig template paths. To ensure this path is used even before the active theme templates path use ''top''.'
+      validate:
+        required: false
+        message: Enter a number or top
+        pattern: '^\d+|(t|T)(o|O)(p|P)$'
